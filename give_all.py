@@ -1,5 +1,7 @@
 from discord.ext import commands
 
+# give all users a role
+
 class Give_All(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
