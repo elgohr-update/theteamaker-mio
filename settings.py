@@ -3,6 +3,6 @@ import os
 
 load_dotenv()
 
-PREFIX = os.getenv("PREFIX")
+PREFIX = "mio "
 TOKEN = os.getenv("TOKEN")
 SQL_DATABASE = os.getenv("SQL_DATABASE")
