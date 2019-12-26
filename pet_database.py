@@ -102,7 +102,7 @@ class Custom_Pet(commands.Cog):
     async def custompet(self, ctx, arg1, arg2, arg3):
         try:
             table.insert(dict(name=arg1, url=arg2, owner=int(arg3)))
-            await ctx.send(f"NAME: {arg1}\nURL: {arg2}\nOWNER ID: {arg3}")
+            await ctx.send(f"NAME: {arg1}\nURL: <{arg2}>\nOWNER ID: {arg3}")
         except Exception as e:
             await ctx.send("Something went wrong.")
             raise e
