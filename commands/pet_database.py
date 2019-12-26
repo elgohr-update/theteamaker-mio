@@ -9,6 +9,13 @@ from settings import SQL_DATABASE
 db = dataset.connect(SQL_DATABASE)
 table = db["pets"]
 
+def setup(bot):
+    bot.add_cog(Add_Pet(bot))
+    bot.add_cog(Delete_Pet(bot))
+    bot.add_cog(Gen_Pet(bot))
+    bot.add_cog(List_Pet(bot))
+    bot.add_cog(Custom_Pet(bot))
+
 class Add_Pet(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
