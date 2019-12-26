@@ -19,7 +19,7 @@ class Hakase(commands.Cog):
         await ctx.send("https://cdn.discordapp.com/attachments/659498703173845003/659580391975419915/s7OJm5d.jpg")
 
 
-# say hi.
+# say hi
 class Hi(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
