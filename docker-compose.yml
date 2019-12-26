@@ -4,7 +4,7 @@ services:
   mio:
     image: theteamaker/mio
     environment:
-      - TOKEN=<secret>
+      - TOKEN=<SECRET>
       - SQL_DATABASE=sqlite:///data/database.db
     volumes:
       - mio_data:/app/data
