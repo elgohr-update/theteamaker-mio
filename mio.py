@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from settings import PREFIX, TOKEN
+import dataset
 
 bot = commands.Bot(command_prefix=PREFIX)
 
@@ -32,6 +33,10 @@ async def pleasantry(ctx):
 @bot.command()
 async def hakase(ctx):
     await ctx.send("https://cdn.discordapp.com/attachments/659498703173845003/659580391975419915/s7OJm5d.jpg")
+
+@bot.command()
+async def hi(ctx):
+    await ctx.send("hi")
 
 @bot.event
 async def on_ready():
