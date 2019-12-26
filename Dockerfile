@@ -7,6 +7,8 @@ COPY *.py /app/
 COPY requirements.txt /app/
 COPY .env.dist /app/.env
 
+RUN mkdir /app/data
+
 WORKDIR /app
 RUN pip install -r requirements.txt
 RUN apk del python3-dev libstdc++ g++

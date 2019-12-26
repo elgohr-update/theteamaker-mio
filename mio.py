@@ -5,7 +5,7 @@ from settings import PREFIX, TOKEN
 # cog importing #
 from give_all import Give_All
 from extraneous import Hakase, Pleasantry, Hi
-from pet_database import Add_Pet, Gen_Pet, Delete_Pet, List_Pet
+from pet_database import Add_Pet, Gen_Pet, Delete_Pet, List_Pet, output_all
 
 bot = commands.Bot(command_prefix=PREFIX)
 
@@ -17,7 +17,8 @@ cogs = [
     Add_Pet(bot),
     Gen_Pet(bot),
     Delete_Pet(bot),
-    List_Pet(bot)
+    List_Pet(bot),
+    output_all(bot)
     ]
 
 def setup(bot):

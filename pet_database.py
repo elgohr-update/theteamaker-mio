@@ -2,10 +2,11 @@ from discord.ext import commands
 import dataset
 import random
 import discord
+from settings import SQL_DATABASE
 
 # Create a pet database for the server!
 
-db = dataset.connect('sqlite:///database.db')
+db = dataset.connect(SQL_DATABASE)
 table = db["pets"]
 
 class Add_Pet(commands.Cog):
@@ -13,14 +14,26 @@ class Add_Pet(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def addpet(self, ctx, arg):
-        try:
-            for image in ctx.message.attachments:
-                table.insert(dict(name=arg.capitalize(), url=image.url, owner=ctx.author.id))
-            await ctx.send(f"Successfully added all images of {arg.capitalize()} to the database!")
-        except Exception as e:
-            await ctx.send("Something went wrong! Let eva know.")
-            raise e
+    async def addpet(self, ctx, *args):
+        if len(args) == 0:
+            await ctx.send("Please enter a name for your pet!")
+
+        elif len(args) == 1:
+            try:
+                for image in ctx.message.attachments:
+                    table.insert(dict(name=args[0].capitalize(), url=image.url, owner=ctx.author.id))
+                await ctx.send(f"Successfully added all images of {args[0].capitalize()} to the database!")
+            except Exception as e:
+                await ctx.send("Something went wrong! Let eva know.")
+                raise e
+
+        elif len(args) == 2:
+            try:
+                table.insert(dict(name=args[0].capitalize(), url=args[1], owner=ctx.author.id))
+                await ctx.send(f"Successfully added image of {args[0].capitalize()} to the database!")
+            except Exception as e:
+                await ctx.send("Something went wrong! Let eva know.")
+                raise e
 
 class Delete_Pet(commands.Cog):
     def __init__(self, bot):
@@ -79,3 +92,13 @@ class List_Pet(commands.Cog):
         embed.set_footer(text="pets are beautiful")
 
         await ctx.send(embed=embed)
+
+class output_all(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command()
+    @commands.is_owner()
+    async def output_all(self, ctx):
+        for i in table:
+            print(i)
