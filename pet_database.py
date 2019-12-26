@@ -93,12 +93,16 @@ class List_Pet(commands.Cog):
 
         await ctx.send(embed=embed)
 
-class output_all(commands.Cog):
+class Custom_Pet(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
+    
     @commands.command()
     @commands.is_owner()
-    async def output_all(self, ctx):
-        for i in table:
-            print(i)
+    async def custompet(self, ctx, arg1, arg2, arg3):
+        try:
+            table.insert(dict(name=arg1, url=arg2, owner=arg3))
+            await ctx.send(f"NAME: {arg1}\nURL: {arg2}\nOWNER ID: {arg3}")
+        except Exception as e:
+            await ctx.send("Something went wrong.")
+            raise e
