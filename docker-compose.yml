@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  lum:
+    image: theteamaker/mio
+    environment:
+      - TOKEN=<secret>
