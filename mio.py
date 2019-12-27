@@ -18,7 +18,7 @@ async def on_ready():
 @bot.event
 async def on_member_join(member):
     if member.guild.id == PRIVATE_SERVER_ID:
-        for role in to_add:
+        for role in DEFAULT_ROLES:
             try:
                 await member.add_roles(member.guild.get_role(role), atomic=True)
             except:
