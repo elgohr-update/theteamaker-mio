@@ -14,6 +14,7 @@ class Pleasantry(commands.Cog):
 
     @commands.command()
     async def pleasantry(self, ctx, *, arg):
+        """returns pleasantry."""
         await ctx.send("https://cdn.discordapp.com/attachments/659498703173845003/659498920619278360/28129Mai.jpg")
 
 class Hakase(commands.Cog):
@@ -22,6 +23,7 @@ class Hakase(commands.Cog):
 
     @commands.command()
     async def hakase(self, ctx, *, arg):
+        """returns hakase."""
         await ctx.send("https://cdn.discordapp.com/attachments/659498703173845003/659580391975419915/s7OJm5d.jpg")
 
 
@@ -32,6 +34,7 @@ class Hi(commands.Cog):
     
     @commands.command()
     async def hi(self, ctx):
+        """says hi!"""
         await ctx.send(f"hi, {ctx.author.nick}!")
 
 class Give_All(commands.Cog):
@@ -41,6 +44,7 @@ class Give_All(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def give_all(self, ctx, *, arg):
+        """gives all users a role. is only able to be used by eva."""
         for role in ctx.guild.roles:
             if role.name == arg:
                 to_add = role

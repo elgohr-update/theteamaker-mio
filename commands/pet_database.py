@@ -22,6 +22,7 @@ class Add_Pet(commands.Cog):
     
     @commands.command()
     async def addpet(self, ctx, *args):
+        """add your pet!\nusage: addpet <pet name> with an attachment,\nor addpet <pet name> <url>"""
         if len(args) == 0:
             await ctx.send("Please enter a name for your pet!")
 
@@ -48,6 +49,7 @@ class Delete_Pet(commands.Cog):
     
     @commands.command()
     async def delpet(self, ctx, arg):
+        """deletes a pet.\nusable only by eva, for now."""
         try:
             table.delete(url=arg)
             await ctx.send("Successfully (and unfortunately) deleted a pet.")
@@ -62,13 +64,16 @@ class Gen_Pet(commands.Cog):
     
     @commands.command()
     async def pet(self, ctx, *args):
+        """generate a random image of a (optionally specific) pet.\nusage: pet, or pet <pet name>."""
         if len(args) == 0:
             random_urls = []
 
             for pet in table:
                 random_urls.append(pet["url"])
-            
-            await ctx.send(random.choice(random_urls))
+            try:
+                await ctx.send(embed=discord.Embed().set_image(url=random.choice(random_urls)))
+            except:
+                await ctx.send(random.choice(random_urls))
         
         elif len(args) > 0:
             random_urls = []
@@ -76,7 +81,10 @@ class Gen_Pet(commands.Cog):
             for pet in table.find(name=args[0].capitalize()):
                 random_urls.append(pet["url"])
             
-            await ctx.send(random.choice(random_urls))
+            try:
+                await ctx.send(embed=discord.Embed().set_image(url=random.choice(random_urls)))
+            except:
+                await ctx.send(random.choice(random_urls))
 
 class List_Pet(commands.Cog):
     def __init__(self, bot):
@@ -84,6 +92,7 @@ class List_Pet(commands.Cog):
     
     @commands.command()
     async def listpets(self, ctx):
+        """lists all pets in mio's database."""
         pet_list = table.distinct("name", "owner")
         unique_pets = []
 
@@ -107,6 +116,7 @@ class Custom_Pet(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def custompet(self, ctx, arg1, arg2, arg3):
+        """only usable by eva.\na manual method of adding a pet with custom database options."""
         try:
             table.insert(dict(name=arg1, url=arg2, owner=int(arg3)))
             await ctx.send(f"NAME: {arg1}\nURL: <{arg2}>\nOWNER ID: {arg3}")

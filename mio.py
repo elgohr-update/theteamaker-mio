@@ -3,8 +3,9 @@ from discord.ext import commands
 from settings import PREFIX, TOKEN
 
 bot = commands.Bot(command_prefix=PREFIX)
+bot.remove_command('help')
 
-COGS = ['extraneous', 'pet_database']
+COGS = ['extraneous', 'pet_database', 'help']
 
 for cog in COGS:
     bot.load_extension(f"commands.{cog}")
