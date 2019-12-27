@@ -24,7 +24,7 @@ class Hakase(commands.Cog):
     @commands.command()
     async def hakase(self, ctx):
         """returns hakase."""
-        await ctx.send(embed=discord.Embed().set_imager(url="https://cdn.discordapp.com/attachments/659498703173845003/659580391975419915/s7OJm5d.jpg"))
+        await ctx.send(embed=discord.Embed().set_image(url="https://cdn.discordapp.com/attachments/659498703173845003/659580391975419915/s7OJm5d.jpg"))
 
 
 # say hi
