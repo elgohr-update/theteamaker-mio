@@ -5,6 +5,7 @@ RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
 
 COPY *.py /app/
 COPY requirements.txt /app/
+COPY hi.jpg /app/
 
 RUN mkdir -p /app/commands
 COPY commands/ /app/commands/
