@@ -13,18 +13,18 @@ class Pleasantry(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def pleasantry(self, ctx, *, arg):
+    async def pleasantry(self, ctx):
         """returns pleasantry."""
-        await ctx.send("https://cdn.discordapp.com/attachments/659498703173845003/659498920619278360/28129Mai.jpg")
+        await ctx.send(embed=discord.Embed().set_image(url="https://cdn.discordapp.com/attachments/659498703173845003/659498920619278360/28129Mai.jpg"))
 
 class Hakase(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
-    async def hakase(self, ctx, *, arg):
+    async def hakase(self, ctx):
         """returns hakase."""
-        await ctx.send("https://cdn.discordapp.com/attachments/659498703173845003/659580391975419915/s7OJm5d.jpg")
+        await ctx.send(embed=discord.Embed().set_imager(url="https://cdn.discordapp.com/attachments/659498703173845003/659580391975419915/s7OJm5d.jpg"))
 
 
 # say hi
