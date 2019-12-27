@@ -1,4 +1,5 @@
 from discord.ext import commands
+import discord
 
 def setup(bot):
     bot.add_cog(Pleasantry(bot))
