@@ -27,14 +27,18 @@ class Add_Pet(commands.Cog):
             await ctx.send("Please enter a name for your pet!")
 
         elif len(args) == 1:
-            try:
-                for image in ctx.message.attachments:
-                    table.insert(dict(name=args[0].capitalize(), url=image.url, owner=ctx.author.id))
-                await ctx.send(f"Successfully added all images of {args[0].capitalize()} to the database!")
-            except Exception as e:
-                await ctx.send("Something went wrong! Let eva know.")
-                raise e
-
+            if len(ctx.message.attachments) != 0:
+                try:
+                    for image in ctx.message.attachments:
+                        table.insert(dict(name=args[0].capitalize(), url=image.url, owner=ctx.author.id))
+                    await ctx.send(f"Successfully added all images of {args[0].capitalize()} to the database!")
+                except Exception as e:
+                    await ctx.send("Something went wrong! Let eva know.")
+                    raise e
+            
+            else:
+                await ctx.send("Please attach a photo to this image!!!! My database breaks easily im a fragile being")
+    
         elif len(args) == 2:
             try:
                 table.insert(dict(name=args[0].capitalize(), url=args[1], owner=ctx.author.id))
@@ -97,9 +101,12 @@ class List_Pet(commands.Cog):
         unique_pets = []
 
         for pet in pet_list:
-            owner = ctx.guild.get_member(pet['owner'])
-            unique_pets.append(str(f"{pet['name']} - owned by **{owner.name}#{owner.discriminator}**"))
-        
+            try:
+                owner = ctx.guild.get_member(pet['owner'])
+                unique_pets.append(str(f"{pet['name']} - owned by **{owner.name}#{owner.discriminator}**"))
+            except:
+                pass
+
         embed = discord.Embed(
             title="List of Pets",
             description="\n".join(unique_pets)
